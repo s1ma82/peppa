@@ -29,7 +29,7 @@
 <body>
     <video id="video" src="./peppa.mp4">
     </video>
-    <button onclick="mute()">play</button>
+    <button id="btn" onclick="mute()">play</button>
 </body> 
 <script>
     const mute = () => {
@@ -38,7 +38,15 @@
         video.volume = 1
         video.play()
         btn.style.display = 'none'
-        
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
     }
 </script>
 </html>
